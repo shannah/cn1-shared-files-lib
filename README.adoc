@@ -2,6 +2,8 @@
 
 This library provides a wrapper over the Android shared files API to allow your Codename One apps to read and write shared files (i.e. files accessible to other apps).
 
+See example app using this API https://github.com/shannah/cn1-shared-files-lib-demo/tree/master/common/src/main/java/com/codename1/shfltest[here].
+
 == Basic Usage
 
 This API provides two abstractions:
