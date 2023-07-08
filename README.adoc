@@ -1,0 +1,80 @@
+= Codename One Shared Files Library
+
+This library provides a wrapper over the Android shared files API to allow your Codename One apps to read and write shared files (i.e. files accessible to other apps).
+
+== Basic Usage
+
+This API provides two abstractions:
+
+1. `SharedFile` - Represents a single file or directory.
+2. `SharedFileManager` - Provides access to the shared file system.  Includes UI abstractions to select directories and files.
+
+First step is to request access to a file:
+
+[source,java]
+----
+
+// Open a directory
+// Will open a file chooser for user to access a directory
+SharedFileManager.getInstance().openDirectory().ready(sharedDirectory -> {
+    // sharedDirectory is a SharedFile object
+});
+
+// Open a file
+SharedFileManager.getInstance().openFile().ready(sharedFile -> {
+    // sharedFile is a SharedFile object
+});
+
+// Open file of specific type
+SharedFileManager.getInstance().openFile("text/plain").ready(sharedFile -> {
+    // sharedFile is a SharedFile object
+});
+
+----
+
+== Reading and Writing Files
+
+Use `SharedFile.openInputStream()` and `SharedFile.openOutputStream(String mimetype)` for reading and writing files.
+
+E.g.
+
+[source,java]
+----
+String textContents = Util.readToString(sharedFile.openInputStream());
+
+textContents += "Modified";
+try (OutputStream output = sharedFile.openOutputStream(sharedFile.getMimetype())) {
+    output.write(textContents.getBytes("UTF-8"));
+}
+----
+
+== Creating New Files
+
+1. Open a directory
+2. Call `directory.getChild(relativePath)` to get reference to file.
+3. Call `child.openOutputStream(mimetype)`
+
+== Bookmarking For Later Use
+
+By default, the files you obtain will no be accessible the next time you load the app.  You need to create a bookmarked file which will provide you with a persistent path that you can use to access the file.
+
+. Use `SharedFile.createBookmark()` to create a bookmark.
+. Use `SharedFile.deleteBookmark()` do remove a bookmark.
+. Use `SharedFile.isBookmark()` to check if the file is a bookmarked file.
+. Use `SharedFileManager.openBookmark(String)` to open a file given its bookmarked path. (i.e. bookmarkedFile.getPath())
+. Use `SharedFileManager.getBookmarks()` for a list of all current bookmarks.
+
+== Installation
+
+Add the following maven dependency to your common/pom.xml file
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.codenameone</groupId>
+    <artifactId>sharedfiles-lib</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <type>pom</type>
+</dependency>
+----
+
