@@ -4,10 +4,10 @@
 
     <groupId>com.codenameone</groupId>
     <artifactId>sharedfiles</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>pom</packaging>
 
-    <name>sharedfiles</name>
+    <name>Codename One Shared Files Library</name>
     <description>Codename One sharedfiles library</description>
     <url>https://www.codenameone.com</url>
 
