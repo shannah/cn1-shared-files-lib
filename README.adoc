@@ -75,7 +75,7 @@ Add the following maven dependency to your common/pom.xml file
 <dependency>
     <groupId>com.codenameone</groupId>
     <artifactId>sharedfiles-lib</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <type>pom</type>
 </dependency>
 ----

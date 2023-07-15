@@ -40,4 +40,6 @@ public interface SharedFile {
 	public boolean isFile();
 
 	public void renameTo(SharedFile destination);
+
+	public SharedFile getChild(String fileName);
 }
